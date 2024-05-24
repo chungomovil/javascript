@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fechas</title>
+</head>
+<body>
+    <h1>Fechas (POR CONSOLE)</h1>
+    <script>
+        //CREAR UNA FECHA PARA  Feb 20, 2012, 3:12am Y MOSTRARLA EN CONSOLE.LOG
+        let fecha1=new Date("2012-02-20T03:12:00");
+        console.log(fecha1);
+    </script>
+    <script>
+        //Escribe una función getWeekDay(date) para mostrar el día de la semana en formato corto: ‘MO’, ‘TU’, ‘WE’, ‘TH’, ‘FR’, ‘SA’, ‘SU’.
+        const dias=["SU", "MO", "TU", "WE", "TH", "FR", "SU"];
+        let fecha2=new Date("2005-08-16");
+        const calcularDiaSemana=dia_semana => dias[dia_semana.getDay()];
+        console.log(calcularDiaSemana(fecha2));
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcular Letra DNI</title>
+</head>
+<h1>Calcular letra dni (POR CONSOLE.LOG)</h1>
+<body>
+    <script>
+        function CalcularLetra(num) {
+            letrasSueltas="TRWAGMYFPDXBNJZSQVHLCKE";
+            const letras=[];
+            for(letra of letrasSueltas) {
+                letras.push(letra);
+            }
+            try {
+                if(isNaN(num)) {
+                    throw new Error("El caracter no es un número.");
+                }
+                else {
+                    num=parseInt(num);
+                    resto=num%23;
+                    dniFinal=num+letras[resto];
+                    return `El dni completo es: ${dniFinal}`;
+                }
+            }
+            catch(error) {
+                console.log(`Se produjo el siguiente error: ${error}`);
+            }
+        }
+        console.log(CalcularLetra("514879332"));
+    </script>
+</body>
+</html>

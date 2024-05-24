@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7</title>
+</head>
+<body>
+    <script>
+        //Programa una función que valide si una palabra o frase dada, es un palíndromo (que se lee igual en un sentido que en otro), pe. mifuncion("Salas") devolverá true.
+
+        const validarPalindromo= cadena => {
+            if(cadena==="") return "La cadena esta vacia";
+            let cadenaRevertida="";
+            let respuesta="";
+            for(let x=(cadena.length-1); x>=0; x--) {
+                cadenaRevertida=cadenaRevertida+cadena[x];
+            }
+            (cadenaRevertida===cadena) ? respuesta=` "${cadena}" y "${cadenaRevertida}" son una cadena palindromo` : respuesta=`"${cadena}" y "${cadenaRevertida}" NO son una cadena palindromo`;
+            return respuesta;
+        }
+
+        let entrada=prompt("Introducir una cadena de texto").toLowerCase();
+        alert(`El resultado de la operacion es: ${validarPalindromo(entrada)}`);
+    </script>
+</body>
+</html>

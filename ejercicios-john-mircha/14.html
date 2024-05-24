@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 14</title>
+</head>
+<body>
+    <script>
+        //Programa una función para convertir grados Celsius a Fahrenheit y viceversa, pe. miFuncion(0,"C") devolverá 32°F.
+
+        const convertirGrados= (grados, formato) => {
+            grados=parseFloat(grados).toFixed(1);
+            if(isNaN(grados)) return "No se ha introducido un valor correcto";
+            let conversion=0;
+            switch(formato) {
+                case "C":
+                    conversion=((grados-32)/1.8).toFixed(1);
+                    conversion+=" ºC";
+                    break;
+                case "F":
+                    conversion=(grados*1.8+32).toFixed(1);
+                    conversion+=" ºF";
+                    break;
+                default:
+                    conversion="Introducir 'C' para Celsius o 'F' para Fahrenheit";
+            }
+            return conversion
+        }
+
+        let entrada=prompt("Introducir grados");
+        let formato=prompt("Formato de salida de los grados 'C' para Celsius o 'F' para Fahrenheit").toUpperCase();
+        alert(`Resultado: ${convertirGrados(entrada, formato)}`);
+
+    </script>
+</body>
+</html>

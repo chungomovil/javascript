@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+</head>
+<body>
+    <h1>Biblioteca (POR CONSOLE)</h1>
+    <script>
+        //CREAMOS LA CLASE PADRE
+        class Libro {
+            //CONSTRUTOR DE LA CLASE
+            constructor(titulo, autor, anio, paginas, precio, stock) {
+                this.titulo=titulo,
+                this.autor=autor,
+                this.anio=anio,
+                this.paginas=paginas,
+                this.precio=precio,
+                this.stock=stock
+            }
+            //LA PROPIEDAD SET SE UTILIZA PARA CAMBIAR VALORES DE LOS ATRIBUTOS
+            set setComprar(cantidad) {
+                if (this.stock>=cantidad) {
+                    this.stock=this.stock-cantidad;
+                }
+                else {
+                    console.error(`Solo hay disponibles ${this.stock} unidades de este producto.`);
+                }
+            }
+            //LA PROPIEDAD GET SE UTILIZA PARA OBTENER LOS VALORES DE LOS ATRIBUTOS
+            get GetStock() {
+                return this.stock;
+            }
+        }
+        //HERENCIA DE CLASE
+        class Infantil extends Libro {
+            constructor(titulo, autor, anio, paginas, precio, stock, genero, MPA) {
+                //LLAMAMOS AL METODO SUPER PARA HEREDAR LOS ATRIBUTOS DEL OBTEJO PADRE
+                super(titulo, autor, anio, paginas, precio, stock),
+                this.genero=genero,
+                this.MPA=MPA
+            }
+            //LOS METODOS STATIC NO NECESITAN SER INSTANCIADOS PARA SU INVOCACION
+            static Descripcion() {
+                //mostramos avisos por la consola (se pintan de un color distinto)
+                console.warn("Esta categoria esta reservada para libros infantiles, accesible para todos los publicos.");
+            }
+        }
+
+        class Romance extends Libro {
+            constructor(titulo, autor, anio, paginas, precio, stock, genero, MPA) {
+                super(titulo, autor, anio, paginas, precio, stock),
+                this.genero=genero,
+                this.MPA=MPA
+            }
+            static Descripcion() {
+                console.warn("Esta categoria esta reservada para novelas romanticas o de temas relacionados con el amor.");
+            }
+        }
+
+
+        const harry_potter_1=new Infantil("Harry Potter y la Piedra Filosofal", "J. K. Rowling", 1999, 430, 14.99, 530, "infantil", "TP"),
+        sombras_50_parte_1=new Romance("50 Sombras de Grey Parte 1", "E. L. James", 2012, 544, 20.50, 243, "romance", "+16");
+
+        Infantil.Descripcion();
+        //el metodo get y set se llaman de una forma diferente al resto
+        harry_potter_1.setComprar=200;
+        console.log(`Hay ${harry_potter_1.GetStock} unidades de ${harry_potter_1.titulo} en stock.`);
+        //para mostrarlo en forma de tabla
+        console.table(harry_potter_1);
+        Romance.Descripcion();
+        sombras_50_parte_1.setComprar=88;
+        console.log(`Hay ${sombras_50_parte_1.GetStock} unidades de ${sombras_50_parte_1.titulo} en stock.`);
+        console.table(sombras_50_parte_1);
+    </script>
+</body>
+</html>

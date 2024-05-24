@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6</title>
+</head>
+<body>
+    <script>
+        //Programa una función para contar el número de veces que se repite una palabra en un texto largo, pe. miFuncion("hola mundo adios mundo", "mundo") devolverá 2.
+        
+        //CON EL METODO SPLIT
+        /*const cuentaRepeticion=(cadena="", buscar="") => {
+            if(cadena==="" || buscar==="") return "Alguno de los valores de entrada esta vacio";
+            const palabras=cadena.split(" ");
+            concurrencia=0;
+            for(palabra of palabras) {
+                if(buscar===palabra) concurrencia++;
+            }
+            return `Hay un total de ${concurrencia} palabras que coinciden con la busqueda.`;
+        }*/
+
+        //CON LOS METODOS INDEXOF Y SLICE
+        const cuentaRepeticion=(cadena="", buscar="") => {
+            if(cadena==="" || buscar==="") return "Alguno de los valores de entrada esta vacio";
+            let concurrencia=0;
+            while(cadena.length>0) {
+                if(cadena.indexOf(buscar)!==-1) {
+                    concurrencia++;
+                    cadena=cadena.slice(cadena.indexOf(buscar)+buscar.length);
+                }
+                else {
+                    cadena="";
+                }
+            }
+            return `Hay un total de ${concurrencia} palabras que coinciden con la busqueda.`;
+        }
+
+        let entrada=prompt("Introducir una cadena de texto");
+        let buscar=prompt("Introducir palabra a buscar");
+        alert(cuentaRepeticion(entrada, buscar));
+    </script>
+</body>
+</html>

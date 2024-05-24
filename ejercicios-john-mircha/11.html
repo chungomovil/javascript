@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 11</title>
+</head>
+<body>
+    <script>
+        //Programa una función que calcule el factorial de un número (El factorial de un entero positivo n, se define como el producto de todos los números enteros positivos desde 1 hasta n), pe. miFuncion(5) devolverá 120.
+        
+        const calcularFactorial= numero => {
+            let solonums=/^\d+$/;
+            if(numero=="" || !solonums.test(numero)) return "Los valores de entrada no son correctos";
+            if(parseInt(numero)===0) return "El valor 0 no tiene factorial";
+            for(let x=numero-1; x>0;x--) {
+                console.log(`Secuencia ${numero} x ${x}`);
+                numero=numero*x;
+            }
+            console.info(`Factorial = ${numero}`);
+            return "El resultado se muestra por 'CONSOLE'";
+        }
+
+        let entrada=prompt("Calcular el factorial de un numero");
+        alert(calcularFactorial(entrada));
+
+    </script>
+</body>
+</html>

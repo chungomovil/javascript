@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8</title>
+</head>
+<body>
+    <script>
+        //Programa una función que elimine cierto patrón de caracteres de un texto dado, pe. miFuncion("xyz1, xyz2, xyz3, xyz4 y xyz5", "xyz") devolverá  "1, 2, 3, 4 y 5.
+
+        //CON REPLACEALL
+        //const eliminarPatron=(cadena, patron) => (cadena!=="") ? cadena.replaceAll(patron, "") : "La cadena esta vacia";
+
+        //CON REPLACE Y REGEXP
+        const eliminarPatron=(cadena, patron) => (cadena!=="") ? cadena.replace(new RegExp(patron, "ig"), "") : "La cadena esta vacia";
+
+        let entrada=prompt("Introducir un texto");
+        let patron=prompt("Introducir texto a eliminar de la cadena anterior");
+        alert(`El resultado de la operacion es: "${eliminarPatron(entrada, patron)}"`);
+    </script>
+</body>
+</html>

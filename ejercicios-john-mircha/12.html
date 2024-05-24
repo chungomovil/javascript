@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 12</title>
+</head>
+<body>
+    <script>
+        //Programa una función que determine si un número es primo (aquel que solo es divisible por sí mismo y 1) o no, pe. miFuncion(7) devolverá true.
+
+        //AGREDANDO LOS NUMEROS DIVISIBLES A UN ARRAY (EN DIGITOS MUY ALTOS ES MUY LENTO)
+        /*const validarNumeroPrimo= numero => {
+            numero=parseInt(Math.floor(numero));
+            if(isNaN(numero) || numero<=0) return "Introducir una valor mayor a 0";
+            if(numero>100000) return "No se pueden introducir numeros demasiado grandes";
+            let division=numero;
+            const divisores=[];
+            while (division>0) {
+                if(numero%division===0) divisores.push(division);
+                division--;
+            }
+            //USAMOS EL METODO MAP PARA RECORRER EL ARRAY Y RETORNAR RESULTADO, EL METODO FOREACH NO RETORNA
+            return (divisores.length<=2) ? `El numero ${numero} es primo, solo se puede dividir entre ${divisores.map((element) => element)}` : `El numero ${numero} no es primo, se puede dividir entre ${divisores.map((element) => element)}`;
+        }*/
+
+        //SE PUEDEN INTRODUCIR VALORES GRANDES PERO NO DEVUELVE LOS DIVISORES
+        const validarNumeroPrimo= numero => {
+            numero=parseInt(Math.floor(numero));
+            if(isNaN(numero) || numero<=0) return "Introducir una valor mayor a 0";
+            let primo=true;
+            for(let x=2; x<numero;x++) {
+                if(numero%x===0) {
+                    primo=false;
+                    return `El numero ${numero} NO es un numero primo.`;
+                }
+            }
+            return `El numero ${numero} ES un numero primo.`;
+        }
+
+        let entrada=prompt("Comprobar que un numero sea primo o no");
+        alert(`Resultado de la operacion: ${validarNumeroPrimo(entrada)}`);
+
+    </script>
+</body>
+</html>

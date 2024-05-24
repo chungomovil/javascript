@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 1</title>
+</head>
+<body>
+    <script>
+        //Programa una función que cuente el número de caracteres de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá 10.
+        function ContarCadena(cadena) {
+            try {
+                cadena=cadena.toString();
+                longitud=cadena.length;
+                if(longitud<=0) {
+                    throw new Error("La cadena esta vacia.");
+                }
+                alert(`La longitud de la cadena introducida es de: ${longitud} caracteres.`);
+            }
+            catch (error){
+                alert(`Se produjo el siguiente error: ${error}`);
+            }
+        }
+
+        let entrada=prompt("Calcular longitud de cadena de caracteres");
+        ContarCadena(entrada);
+    </script>
+</body>
+</html>

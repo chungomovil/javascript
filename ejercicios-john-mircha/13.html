@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 13</title>
+</head>
+<body>
+    <script>
+        //Programa una función que determine si un número es par o impar, pe. miFuncion(29) devolverá Impar.
+
+        const calcularImpar= numero => {
+            numero=parseInt(Math.abs(Math.floor(numero)));
+            if(isNaN(numero)) return "Introducir un valor numerico";
+            return (numero%2===0) ? `El numero ${numero} es par.` : `El numero ${numero} no es par.`;
+        }
+
+        let entrada=prompt("Comprobar el numero introducido sea par");
+        alert(calcularImpar(entrada));
+
+    </script>
+</body>
+</html>

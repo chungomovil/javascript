@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2</title>
+</head>
+<body>
+    <script>
+        //Programa una función que te devuelva el texto recortado según el número de caracteres indicados, pe. miFuncion("Hola Mundo", 4) devolverá "Hola".
+        function CortarCadena(cadena, pos) {
+            try {
+                cadena=cadena.toString();
+                if(cadena.length<=0) {
+                    throw new Error("La cadena esta vacia");
+                }
+                if(cadena.length<pos) {
+                    throw new Error("La cadena no posee tantos caracteres");
+                }
+                else {
+                    trozo=cadena.slice(0, pos);
+                    alert(`El fragmento seleccionado es: "${trozo}"`);
+                }
+            }
+            catch (error) {
+                alert(`Se produjo el siguiente error: ${error}`);
+            }
+        }
+        
+        let entrada=prompt("Introducir texto");
+        let posicion=prompt("¿Hasta que posicion desea cortar la cadena?");
+        let solonums=/^\d+$/;
+        solonums.test(posicion) ? CortarCadena(entrada, posicion) : alert("Introducir un valor entero"); 
+    </script>
+</body>
+</html>

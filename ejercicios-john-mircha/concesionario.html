@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concesionario</title>
+</head>
+<body>
+    <h1>Concesionario (POR CONSOLE.LOG)</h1>
+    <script>
+        const coche1={
+            marca: "Toyota",
+            modelo: "Supra",
+            motor: "3.0L atmosferico 320cv",
+            color: "rojo",
+            encendido: false,
+            encender: function() {
+                if(!this.encendido) {
+                    this.encendido=true;
+                    console.log("BRUUUUUM");
+                }
+                else {
+                    console.log("El coche ya se encuentra encedido.")
+                }
+            },
+            apagar: function() {
+                this.encendido=false;
+                console.log("El coche se ha apagado.");
+            },
+            acelerar: function() {
+                if(this.encendido) {
+                    console.log("BRUUUUUUM TA TA TA");
+                }
+                else {
+                    console.log("Debes encender primero el coche.");
+                }
+            }
+        }
+        const coche2={
+            marca: "Hyundai",
+            modelo: "i20N",
+            motor: "1.6L Turbo 204cv",
+            color: "azul electrico",
+            encendido: false,
+            encender: function() {
+                if(!this.encendido) {
+                    this.encendido=true;
+                    console.log("BRUUUUUM");
+                }
+                else {
+                    console.log("El coche ya se encuentra encedido.")
+                }
+            },
+            apagar: function() {
+                this.encendido=false;
+                console.log("El coche se ha apagado.");
+            },
+            acelerar: function() {
+                if(this.encendido) {
+                    console.log("BRUUUUUUM TA");
+                }
+                else {
+                    console.log("Debes encender primero el coche.");
+                }
+            }
+        }
+        const coche3={
+            marca: "Volkswagen",
+            modelo: "Taigo",
+            motor: "1.0 Turbo 95cv",
+            color: "negro",
+            encendido: false,
+            encender: function() {
+                if(!this.encendido) {
+                    this.encendido=true;
+                    console.log("BROM");
+                }
+                else {
+                    console.log("El coche ya se encuentra encedido.");
+                }
+            },
+            apagar: function() {
+                this.encendido=false;
+                console.log("El coche se ha apagado.");
+            },
+            acelerar: function() {
+                if(this.encendido) {
+                    console.log("BROOOOOM");
+                }
+                else {
+                    console.log("Debes encender primero el coche.");
+                }
+            }
+        }
+
+        console.log(`Se esta mostrando el ${coche2.marca} ${coche2.modelo}, color ${coche2.color}, con motor ${coche2.motor}`);
+        coche2.encender();
+        coche2.acelerar();
+        console.log(coche2.encendido);
+
+    </script>
+</body>
+</html>

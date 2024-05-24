@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5</title>
+</head>
+<body>
+    <script>
+        //Programa una función que invierta las palabras de una cadena de texto, pe. miFuncion("Hola Mundo") devolverá "odnuM aloH".
+        //CON BUCLE FOR
+        /*const invertirCadena = cadena => {
+            if(cadena.length===0) return "No se ha introducido texto";
+            let cadenaInvertida="";
+            for(let x=(cadena.length-1);x>=0;x--) {
+                cadenaInvertida+=cadena[x];
+            }
+            return cadenaInvertida;
+        }*/
+
+        //CON METODOS DE ARRAY
+        const invertirCadena= cadena => (!cadena) ? "No se ha introducido texto" : cadena.split("").reverse().join("");
+
+        let entrada=prompt("Introducir texto");
+        alert(`El resultado de la operacion es: ${invertirCadena(entrada)}`);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calcular A&ntilde;os</title>
+</head>
+<body>
+    <h1>Calcular A&ntilde;os (POR CONSOLE)</h1>
+    <script>
+        let hoy=new Date();
+        const fechas=["2014-05-13"];
+        let hoy_formateado=`${hoy.getFullYear()}-${hoy.getMonth()}-${hoy.getDate()}`;
+        hoy_formateado=new Date(`${hoy_formateado} 00:00:00`);
+        hoy_formateado=hoy_formateado.getTime();
+        fechas.forEach((element, index) => {
+            fecha=new Date(`${element} 00:00:00`);
+            fecha=fecha.getTime();
+            transcurrido=hoy_formateado-fecha;
+            anio=(transcurrido/(86400*1000));
+            anio=Math.floor(anio/363.75);
+            console.log(`${anio} anios.`);
+
+        })
+    </script>
+</body>
+</html>
