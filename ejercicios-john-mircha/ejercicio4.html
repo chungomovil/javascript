@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4</title>
+</head>
+<body>
+    <script>
+        //Programa una función que repita un texto X veces, pe. miFuncion('Hola Mundo', 3) devolverá Hola Mundo Hola Mundo Hola Mundo.
+        function RepetirCadena(cadena, repeticiones) {
+            alert("La salida se mostrara por la consola");
+            if(repeticiones>0) {
+                for(let x=0;x<repeticiones;x++) {
+                    console.log(cadena);
+                }
+            }
+        }
+        
+        let entrada=prompt("Introducir texto a repetir");
+        let repeticiones=prompt("Veces a repetir el texto");
+        let solonums=/^\d+$/
+        solonums.test(repeticiones) ? RepetirCadena(entrada, repeticiones) : alert("Formato de repeticiones no valido");
+    </script>
+</body>
+</html>

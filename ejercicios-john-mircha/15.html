@@ -9,6 +9,42 @@
     <script>
         //Programa una función para convertir números de base binaria a decimal y viceversa, pe. miFuncion(100,2) devolverá 4 base 10.
         
+        const convertirNumero= (numero, base=2) => {
+            base=parseInt(base);
+            if(isNaN(parseInt(numero))) return "No se ha introducido un valor correcto."
+            let resultado="";
+            if(base===2) {
+                resultado=0;
+                let esBinario=true;
+                numero.split("").forEach((element) => {
+                    if(element!=="0" && element!=="1") {
+                        esBinario=false;
+                    }
+                })
+                if(esBinario===false) return "El numero no es binario";
+                for(let x=numero.length-1; x>=0; x--) {
+                    if(parseInt(numero[x])!==0) {
+                        resultado+=2**((numero.length-1)-x);
+                    }
+                }
+            }
+            else if(base===1) {
+                while(numero!==0) {
+                    resultado+=numero%2;
+                    numero=Math.floor(numero/2);
+                }
+                resultado=resultado.split("").reverse().join("");
+            }
+            else {
+                return "PRESIONAR (1) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.";
+            }
+            return resultado;
+        }
+
+        let entrada=prompt("Introducir un valor binario");
+        let base=prompt("PRESIONAR (1) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.")
+        alert(convertirNumero(entrada, base));
+
     </script>
 </body>
 </html>

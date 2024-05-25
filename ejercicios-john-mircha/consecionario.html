@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consecionario</title>
+</head>
+<body>
+    <h1>Consecionario(POR CONSOLE.LOG)</h1>
+    <script>
+        function Coche (marca, modelo, motor, pintura) {
+            this.marca=marca,
+            this.modelo=modelo,
+            this.motor=motor,
+            this.pintura=pintura
+        }
+
+        Coche.prototype.acelerar=function() {
+            console.log(`El ${this.modelo} hace BRUUUUUUM TA TA TA con el motor ${this.motor}.`)
+        }
+
+        function SuperCar(marca, modelo, motor, pintura, precio) {
+            this.super=Coche;
+            this.super(marca, modelo, motor, pintura);
+            this.precio=precio;
+        }
+
+        SuperCar.prototype.acelerar=function() {
+            console.log(`El ${this.modelo} hace BRUUUUUUUUUMMMMM BRUUUUUUMMMM FUUUUUUCH (LLAMAS SALEN).`);
+        }
+        SuperCar.prototype.felicitacion=function() {
+            console.log(`Que disfrute su nuevo ${this.marca} ${this.modelo}.`);
+        }
+
+        const toyota_supra=new Coche("Toyota", "Supra MK4", "3.0L Turbo 362cv", "naraja y negro");
+        const hyundai_i20n=new Coche("Hyundai", "i20N", "1.6L Turbo 204cv", "azul electrico");
+        const lamborghini=new SuperCar("Lamborghini", "Huracan Performance", "V10 Atmosferico 640cv", "gris mate", "340.000€");
+        console.log(toyota_supra);
+        toyota_supra.acelerar();
+        console.log(hyundai_i20n);
+        hyundai_i20n.acelerar();
+        console.log(lamborghini);
+        lamborghini.acelerar();
+        lamborghini.felicitacion();
+    </script>
+</body>
+</html>
