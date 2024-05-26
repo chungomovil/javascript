@@ -8,7 +8,17 @@
 <body>
     <script>
         //Programa una función que devuelva el monto final después de aplicar un descuento a una cantidad dada, pe. miFuncion(1000, 20) devolverá 800.
-        
+        const aplicarDescuento=(precio, descuento) => {
+            if(isNaN(parseFloat(precio)) || precio<=0) return "Precio en formato invalido o menor a 0.";
+            if(isNaN(parseFloat(descuento)) || (descuento<=0 || descuento>99)) return "Descuento en formato invalido o rango no comprendido entre 1 y 99";
+            let precioFinal=precio-(precio*descuento)/100;
+            return `El precio del articulo con descuento es: ${precioFinal} €`;
+        }
+
+        let precio=prompt("Introducir el precio del articulo");
+        let descuento=prompt("Introducir descuento");
+        alert(aplicarDescuento(precio, descuento));
+
     </script>
 </body>
 </html>

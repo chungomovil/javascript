@@ -9,6 +9,20 @@
     <script>
         //Programa una función que dada una fecha válida determine cuantos años han pasado hasta el día de hoy, pe. miFuncion(new Date(1984,4,23)) devolverá 35 años (en 2020).
         
+        const calcularFecha= fecha => {
+            if(!/\d{2}-\d{2}-\d{4}/.test(fecha)) return "Formato de fecha invalido";
+            fecha=fecha.split("-").reverse().join("-");
+            fecha=new Date(fecha);
+            if(isNaN(fecha)) return "Fecha incorrecta";
+            fecha=fecha.getTime();
+            let hoy=Date.now();
+            let transcurrido=Math.floor((hoy-fecha)/1000/60/60/24/365);
+            return `Han transcurrido ${transcurrido} anios.`;
+        }
+
+        let entrada=prompt("Calcular anios desde una fecha (formato DD-MM-YYYY)").replaceAll("/","-");
+        alert(calcularFecha(entrada));
+
     </script>
 </body>
 </html>
