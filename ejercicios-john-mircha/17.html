@@ -14,10 +14,14 @@
             fecha=fecha.split("-").reverse().join("-");
             fecha=new Date(fecha);
             if(isNaN(fecha)) return "Fecha incorrecta";
-            fecha=fecha.getTime();
-            let hoy=Date.now();
-            let transcurrido=Math.floor((hoy-fecha)/1000/60/60/24/365);
-            return `Han transcurrido ${transcurrido} anios.`;
+            let hoy=new Date();
+            let transcurrido=(hoy.getTime()-fecha.getTime())/(1000*60*60*24*365);
+            transcurrido=(Math.sign(transcurrido)===1) ? Math.floor(transcurrido) : Math.ceil(transcurrido);
+            return (Math.sign(transcurrido)===1)
+            ? `Han transcurrido ${transcurrido} anios, desde el ${fecha.getFullYear()}`
+            : (Math.sign(transcurrido)===-1)
+            ? `Aun faltan ${Math.abs(transcurrido)} anios para el ${fecha.getFullYear()}`
+            : `Hay menos de un anio para ${fecha.getFullYear()}`
         }
 
         let entrada=prompt("Calcular anios desde una fecha (formato DD-MM-YYYY)").replaceAll("/","-");

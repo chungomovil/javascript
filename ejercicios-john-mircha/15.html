@@ -22,27 +22,33 @@
                     }
                 })
                 if(esBinario===false) return "El numero no es binario";
+                //ALGORITMO MANUAL
                 for(let x=numero.length-1; x>=0; x--) {
                     if(parseInt(numero[x])!==0) {
                         resultado+=2**((numero.length-1)-x);
                     }
                 }
+                //CON METODO PARSEINT
+                //resultado=parseInt(numero, base); //EL PRIMER DIGITO ES EL NUMERO A CONVERTIR, Y EL SEGUNDO VALOR REPRESENTA LA BASE A LA QUE SE CONVERTIRÁ
             }
-            else if(base===1) {
+            else if(base===10) {
+                //ALGORITMO MANUAL
                 while(numero!==0) {
                     resultado+=numero%2;
                     numero=Math.floor(numero/2);
                 }
                 resultado=resultado.split("").reverse().join("");
+                //CON METODOS PARSEINT Y TOSTRING
+                //resultado=parseInt(numero).toString(2); //PARSEINT ES NECESARIO PARA QUE TOSTRING LO DETECTE COMO UN VALOR NUMERICO, LUEGO TOSTRING LO PASA A BASE BINARIA
             }
             else {
-                return "PRESIONAR (1) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.";
+                return "PRESIONAR (10) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.";
             }
-            return resultado;
+            return `${resultado} en base ${base}`;
         }
 
         let entrada=prompt("Introducir un valor binario");
-        let base=prompt("PRESIONAR (1) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.")
+        let base=prompt("PRESIONAR (10) PARA DECIMAL A BINARIO // PRESIONAR (2) PARA BINARIO A DECIMAL.")
         alert(convertirNumero(entrada, base));
 
     </script>
