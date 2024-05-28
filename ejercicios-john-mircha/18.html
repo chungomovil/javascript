@@ -9,6 +9,20 @@
     <script>
         //Programa una función que dada una cadena de texto cuente el número de vocales y consonantes, pe. miFuncion("Hola Mundo") devuelva Vocales: 4, Consonantes: 5.
         
+        const separarConsonantesYVocales= cadena => {
+            if(cadena==="" || /\d{1}/.test(cadena)===true) return "Los valores introducidos no son validos.";
+            let vocales=0;
+            let consonantes=0;
+            let validarVocales=/[aeiou]/;
+            let cadenaMod=cadena.replace(/[^a-z]/g,""); //Eliminamos todos los caracteres que no esten comprendidos entre a y z
+            for(letra of cadenaMod) {
+                (validarVocales.test(letra)) ? vocales++ : consonantes++;
+            }
+            return `En '${cadena}' hay ${vocales} vocales y ${consonantes} consonantes.`;
+        }
+        let entrada=prompt("Introducir una cadena de texto").toLocaleLowerCase();
+        alert(separarConsonantesYVocales(entrada));
+
     </script>
 </body>
 </html>
