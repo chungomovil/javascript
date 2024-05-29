@@ -9,6 +9,13 @@
     <script>
         //Programa una función que valide que un texto sea un email válido, pe. miFuncion("jonmircha@gmail.com") devolverá verdadero.
         
+        const validarCorreo= correo => (correo==="" || !/^\w{1,}@\w{1,}\.\w{2,5}/g.test(correo)) //validamos el formato del correo con esta regexp
+        ? "El formato del correo no es correcto."
+        : `El correo "${correo}" es correcto`;
+
+        let entrada=prompt("Introducir un correo electronico.");
+        alert(validarCorreo(entrada));
+
     </script>
 </body>
 </html>

@@ -9,6 +9,15 @@
     <script>
         //Programa una función que valide que un texto sea un nombre válido, pe. miFuncion("Jonathan MirCha") devolverá verdadero.
         
+        const validarNombre= cadena => {
+            if(cadena==="" || /^\^[a-z]+$/.test(cadena)===true) return "La cadena solo puede contener caracteres alfabeticos";
+            let validar=/^[a-zA-Z]{2,}\s[a-zA-Z]{2,}$/; //Limitamos la cadena a que solo tenga dos porciones de texto separadas por espacio
+            return validar.test(cadena) ? `El nombre "${cadena}" es correcto.` : `El nombre "${cadena}" no es correcto`;
+        }
+
+        let entrada=prompt("Introducir un nombre");
+        alert(validarNombre(entrada));
+
     </script>
 </body>
 </html>
