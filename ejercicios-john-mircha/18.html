@@ -13,14 +13,15 @@
             if(cadena==="" || /\d{1}/.test(cadena)===true) return "Los valores introducidos no son validos.";
             let vocales=0;
             let consonantes=0;
-            let validarVocales=/[aeiou]/;
-            let cadenaMod=cadena.replace(/[^a-z]/g,""); //Eliminamos todos los caracteres que no esten comprendidos entre a y z
-            for(letra of cadenaMod) {
+            let validarVocales=/[aeiouáéíóúü]/;
+            let cadenaMod=cadena.replace(/[^a-zñaeiouáéíóúü]/g,""); //Eliminamos todos los caracteres que no esten comprendidos entre a y z, agregamos los caracteres latino para que no se eliminen
+            for(let letra of cadenaMod) {
                 (validarVocales.test(letra)) ? vocales++ : consonantes++;
             }
             return `En '${cadena}' hay ${vocales} vocales y ${consonantes} consonantes.`;
         }
-        let entrada=prompt("Introducir una cadena de texto").toLocaleLowerCase();
+
+        let entrada=prompt("Introducir una cadena de texto").toLowerCase();
         alert(separarConsonantesYVocales(entrada));
 
     </script>

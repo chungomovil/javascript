@@ -11,8 +11,8 @@
         
         const validarNombre= cadena => {
             if(cadena==="" || /^\^[a-z]+$/.test(cadena)===true) return "La cadena solo puede contener caracteres alfabeticos";
-            let validar=/^[a-zA-Z]{2,}\s[a-zA-Z]{2,}$/; //Limitamos la cadena a que solo tenga dos porciones de texto separadas por espacio
-            return validar.test(cadena) ? `El nombre "${cadena}" es correcto.` : `El nombre "${cadena}" no es correcto`;
+            let validar=/^[a-zñaeiouáéíóúü]{2,}\s[a-zñaeiouáéíóúü]{2,}$/; //Limitamos la cadena a que solo tenga dos porciones de texto separadas por espacio
+            return validar.test(cadena.toLowerCase()) ? `El nombre "${cadena}" es correcto.` : `El nombre "${cadena}" no es correcto`;
         }
 
         let entrada=prompt("Introducir un nombre");

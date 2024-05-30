@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 21</title>
+</head>
+<body>
+    <script>
+        //Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
+
+        const elevarNumeros= numeros => {
+            let listaNumeros=numeros.split(",");
+            let validar=true;
+            for(let numero of listaNumeros) {
+                numero=parseInt(numero);
+                if(isNaN(numero)) {
+                    validar=false;
+                    break;
+                }
+            }
+            console.log(validar);
+        }
+
+        let entrada=prompt("Ingresar una cadena de numeros separada por ',' para elevarlos al cuadrado");
+        elevarNumeros(entrada);
+    </script>
+</body>
+</html>
