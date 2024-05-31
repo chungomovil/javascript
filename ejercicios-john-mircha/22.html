@@ -9,6 +9,37 @@
     <script>
         //Programa una función que dado un array devuelva el número mas alto y el más bajo de dicho array, pe. miFuncion([1, 4, 5, 99, -60]) devolverá [99, -60].
         
+        const valoresExtremos= numeros => {
+            const listaNumeros=numeros.split(",");
+            const listaExtremos=[];
+            let validar=true;
+            if(listaNumeros.length<2) return "Se deben introducir mas de dos valores";
+            for(let x=0;x<listaNumeros.length;x++) {
+                let numero=parseInt(listaNumeros[x]);
+                if(isNaN(numero)) {
+                    validar=false;
+                    break;
+                }
+                else {
+                    listaNumeros[x]=numero;
+                }
+            }
+            if(!validar) {
+                return "Solo se admiten valores numericos.";
+            }
+            else {
+                listaNumeros.forEach((element) => {
+                    if(listaExtremos[0]===undefined || element>listaExtremos[0]) listaExtremos[0]=element;
+                    if(listaExtremos[1]===undefined || element<listaExtremos[1]) listaExtremos[1]=element;
+                });
+            }
+
+            return `Los valores mayores de la lista '${listaNumeros}' son '${listaExtremos}'`;
+        }
+
+        let entrada=prompt("Ingresar una cadena de numeros separada por ',' para mostrar el mayor y el menor");
+        alert(valoresExtremos(entrada));
+
     </script>
 </body>
 </html>

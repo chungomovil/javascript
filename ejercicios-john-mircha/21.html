@@ -10,20 +10,29 @@
         //Programa una función que dado un array numérico devuelve otro array con los números elevados al cuadrado, pe. mi_funcion([1, 4, 5]) devolverá [1, 16, 25].
 
         const elevarNumeros= numeros => {
-            let listaNumeros=numeros.split(",");
+            const listaNumeros=numeros.split(",");
             let validar=true;
-            for(let numero of listaNumeros) {
-                numero=parseInt(numero);
+            for(let x=0;x<listaNumeros.length;x++) {
+                let numero=parseInt(listaNumeros[x]);
                 if(isNaN(numero)) {
                     validar=false;
                     break;
                 }
+                else {
+                    listaNumeros[x]=numero;
+                }
             }
-            console.log(validar);
+            if(!validar) {
+                return "Solo se admiten valores numericos";
+            }
+            else {
+                const listaNumerosCuadrado=listaNumeros.map(element => element**2);
+                return `Los numeros '${listaNumeros}' al cuadrado son '${listaNumerosCuadrado}'`;
+            }
         }
 
         let entrada=prompt("Ingresar una cadena de numeros separada por ',' para elevarlos al cuadrado");
-        elevarNumeros(entrada);
+        alert(elevarNumeros(entrada));
     </script>
 </body>
 </html>

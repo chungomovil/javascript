@@ -8,6 +8,43 @@
 <body>
     <script>
         //Programa una función que dado un array de números devuelva un objeto con 2 arreglos en el primero almacena los números pares y en el segundo los impares, pe. miFuncion([1,2,3,4,5,6,7,8,9,0]) devolverá {pares: [2,4,6,8,0], impares: [1,3,5,7,9]}.
+
+        const numerosParesImpares= numeros => {
+            const listaNumeros=numeros.split(",");
+            let validar=true;
+            const ClasesNumeros={
+                listaPares: [],
+                listaImpares: []
+            }
+            for(let x=0;x<listaNumeros.length;x++) {
+                let numero=parseInt(listaNumeros[x]);
+                if(isNaN(numero)) {
+                    validar=false;
+                    break;
+                }
+                else {
+                    listaNumeros[x]=numero;
+                }
+            }
+            if(!validar) {
+                return "Solo se admiten valores numericos.";
+            }
+            else {
+                listaNumeros.forEach(element => (element%2==0) ? ClasesNumeros.listaPares.push(element) : ClasesNumeros.listaImpares.push(element));
+            }
+
+            return ClasesNumeros;
+        }
+        
+        let entrada=prompt("Ingresar una cadena de numeros separada por ',' para mostrar los numeros pares e impares");
+        let numeros=numerosParesImpares(entrada);
+        if(typeof numeros!=="object") {
+            alert(numeros);
+        }
+        else {
+            alert(`Numeros introducidos: ${entrada}\nNumeros pares: ${numeros.listaPares}\nNumeros impares: ${numeros.listaImpares}`);
+        }
+
     </script>
 </body>
 </html>
