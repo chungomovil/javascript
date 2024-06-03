@@ -27,14 +27,18 @@
             if(!validar) {
                 return "Solo se admiten valores numericos.";
             }
-            else {
+            //METODO RECORRIENDO EL ARRAY Y SACANDO EL VALOR MENOR Y MAYOR
+            /*else {
                 listaNumeros.forEach((element) => {
                     if(listaExtremos[0]===undefined || element>listaExtremos[0]) listaExtremos[0]=element;
                     if(listaExtremos[1]===undefined || element<listaExtremos[1]) listaExtremos[1]=element;
                 });
             }
 
-            return `Los valores mayores de la lista '${listaNumeros}' son '${listaExtremos}'`;
+            return `Los valores mayores de la lista '${listaNumeros}' son '${listaExtremos}'`;*/
+            
+            //CON LOS METODOS DEL OBJETO MATH (HAY QUE AGREGAR EL ARRAY CON EL SPREAD OPERATOR)
+            return `Los valores mayores de la lista '${listaNumeros}'son:\n Valor mayor: ${Math.max(...listaNumeros)}\nValor menor: ${Math.min(...listaNumeros)}`;
         }
 
         let entrada=prompt("Ingresar una cadena de numeros separada por ',' para mostrar el mayor y el menor");
