@@ -7,7 +7,36 @@
 </head>
 <body>
     <script>
-        //Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendiente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+        //Programa una función que dado un arreglo de números devuelva un objeto con dos arreglos, el primero tendrá los numeros ordenados en forma ascendente y el segundo de forma descendente, pe. miFuncion([7, 5,7,8,6]) devolverá { asc: [5,6,7,7,8], desc: [8,7,7,6,5] }.
+
+        const numerosAscDesc = listaNumeros => {
+            if(listaNumeros.length === 0) return "La lista esta vacia.";
+            listaNumeros = listaNumeros.split(",");
+            for(let key of listaNumeros.keys()) {
+                try {
+                    numero = parseInt(listaNumeros[key]);
+                    if(isNaN(numero)) {
+                        throw new Error("Los valores deben ser numericos");
+                    }
+                    else {
+                        listaNumeros[key]=numero;
+                    }
+                }
+                catch (error){
+                    return error;
+                }
+            }
+            const NumerosOrdenados = {
+                asc: listaNumeros.sort(),
+                desc: listaNumeros.sort().reverse()
+            }
+
+            console.log(NumerosOrdenados.desc);
+        }
+
+        let entrada=prompt("Ingresar una cadena de numeros separada por ',' para ordenador de mayor a menor y viceversa.");
+        alert(numerosAscDesc(entrada));
+
 
     </script>
 </body>
