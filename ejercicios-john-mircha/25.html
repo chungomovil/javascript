@@ -9,6 +9,23 @@
     <script>
         //Programa una función que dado un arreglo de elementos, elimine los duplicados, pe. miFuncion(["x", 10, "x", 2, "10", 10, true, true]) devolverá ["x", 10, 2, "10", true].
         
+        const eliminarDuplicados = listaElementos => {
+            if(listaElementos.length === 0) return "La lista esta vacia.";
+            listaElementos = listaElementos.split(",");
+            const listaElementosMod=[];
+            for(let elemento1 of listaElementos) {
+                let contar = 0;
+                for(let elemento2 of listaElementosMod) {
+                    if(elemento1 === elemento2) contar++;
+                }
+                if(contar === 0) listaElementosMod.push(elemento1);
+            }
+            return `Lista original: ${listaElementos}\nLista sin duplicados: ${listaElementosMod}.`;
+        }
+
+        let entrada = prompt("Ingresar una cadena separada por ',' para eliminar duplicados").toLowerCase();
+        alert(eliminarDuplicados(entrada));
+
     </script>
 </body>
 </html>
