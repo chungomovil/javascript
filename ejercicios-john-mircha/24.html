@@ -14,7 +14,7 @@
             listaNumeros = listaNumeros.split(",");
             for(let key of listaNumeros.keys()) {
                 try {
-                    numero = parseInt(listaNumeros[key]);
+                    let numero = parseInt(listaNumeros[key]);
                     if(isNaN(numero)) {
                         throw new Error("Los valores deben ser numericos");
                     }
@@ -26,17 +26,44 @@
                     return error;
                 }
             }
-            const NumerosOrdenados = {
+            //CON EL METODO SORT
+            /*const NumerosOrdenados = {
                 asc: listaNumeros.sort(),
                 desc: listaNumeros.sort().reverse()
+            }*/
+            
+            //METODO MANUAL
+            const NumerosOrdenados = {
+                desc: [],
+                asc: []
             }
-
-            console.log(NumerosOrdenados.desc);
+            while(listaNumeros.length > 0) {
+                let mayor=listaNumeros[0];
+                let pos=0;
+                for(let x = 0; x < listaNumeros.length; x++) {
+                    if(listaNumeros[0] <= listaNumeros[x]) {
+                        mayor=listaNumeros[x];
+                        pos=x;
+                    }
+                }
+                NumerosOrdenados.desc.push(mayor);
+                listaNumeros.splice(pos, 1);
+            }
+            NumerosOrdenados.asc=NumerosOrdenados.desc.toReversed(); //este metodo no modifica el array principal, lo contario que haria "reverse"
+            return NumerosOrdenados;
         }
 
         let entrada=prompt("Ingresar una cadena de numeros separada por ',' para ordenador de mayor a menor y viceversa.");
-        alert(numerosAscDesc(entrada));
+        numeros=numerosAscDesc(entrada);
+        if(typeof numeros==="object") {
+            (numeros instanceof Error)
+            ? alert(numeros)
+            : alert(`Lista ingresada ${entrada}\nLista ascendente: ${numeros.asc}\nLista descendente: ${numeros.desc}`);
 
+        }
+        else {
+            alert(numeros);
+        }
 
     </script>
 </body>
