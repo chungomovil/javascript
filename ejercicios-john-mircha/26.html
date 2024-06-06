@@ -9,6 +9,40 @@
     <script>
         //Programa una función que dado un arreglo de números obtenga el promedio, pe. promedio([9,8,7,6,5,4,3,2,1,0]) devolverá 4.5.
         
+        const calcularPromedio = numeros => {
+            if(numeros.length === 0) return "La lista de valores esta vacia.";
+            const listaNumeros = numeros.split(",");
+            let suma=0;
+            for(let clave of listaNumeros.keys()) {
+                try {
+                    let numero = parseInt(listaNumeros[clave]);
+                    if(isNaN(numero)) {
+                        throw new Error("Solo se pueden introducir valores numericos.");
+                    }
+                    else {
+                        listaNumeros[clave] = numero;
+                    }
+                }
+                catch (error) {
+                    return error;
+                }
+            }
+            //METODO MANUAL
+            /*listaNumeros.forEach(elemento => suma += elemento);
+            let promedio = (suma/listaNumeros.length).toFixed(1);
+            return `Valores ingresados: ${listaNumeros}\nPromedio: ${promedio}`;*/
+
+            //CON EL METODO REDUCE
+            let promedio = listaNumeros.reduce((total, elemento) => {
+                total += elemento;
+                return total
+            })/listaNumeros.length;
+            return `Valores ingresados: ${listaNumeros}\nPromedio: ${promedio.toFixed(1)}`;
+        }
+
+        let entrada = prompt("Ingresar valores numericos separados por ',' para calcular la media.");
+        alert(calcularPromedio(entrada));
+
     </script>
 </body>
 </html>

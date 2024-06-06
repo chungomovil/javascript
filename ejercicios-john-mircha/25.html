@@ -12,14 +12,27 @@
         const eliminarDuplicados = listaElementos => {
             if(listaElementos.length === 0) return "La lista esta vacia.";
             listaElementos = listaElementos.split(",");
-            const listaElementosMod=[];
+            //METODO MANUAL
+            /*const listaElementosMod=[];
             for(let elemento1 of listaElementos) {
                 let contar = 0;
                 for(let elemento2 of listaElementosMod) {
                     if(elemento1 === elemento2) contar++;
                 }
                 if(contar === 0) listaElementosMod.push(elemento1);
-            }
+            }*/
+
+            //CON LOS METODOS FILTER E INDEXOF
+            /* ***EXPLICACION***
+            Filter funciona como un bucle el cual recorre un array verficando la una condicion para filtrar elementos. 
+            Entonces la condicion que se le da es que compare la posicion de los elementos recorridos junto con la posicion en el arrayOriginal utilizando indexOf().
+            IndexOf, funciona buscando un valor en una arreglo y devolviendote la posicion del PRIMER elemento encontrado.
+
+            1era vuelta: 0 === 0   -> true
+            2da vuelta: 1 === 1    -> true
+            3era vuelta: 0 === 2   -> false (aqui esta el truco, indexOf devuelve la posicion del primer elemento encontrado. entonces lo que hacemos es comparar ese indice, contra el indice que lleva recorriendo el metodo filter.)*/
+            const listaElementosMod = listaElementos.filter((elemento, index, self) => self.indexOf(elemento) === index);
+
             return `Lista original: ${listaElementos}\nLista sin duplicados: ${listaElementosMod}.`;
         }
 
