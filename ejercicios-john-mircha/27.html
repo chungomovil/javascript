@@ -42,6 +42,10 @@
             this.calificacion = calificacion
         }
 
+        get GetFicha () {
+            return `***FICHA TECNICA DE "${this.titulo.toUpperCase()}"***\n- Id: ${this.id}\n- Director: ${this.director}\n- Estreno: ${this.estreno}\n- Pais(es) de origen: ${this.pais}\n- Genero(s): ${this.genero}\n- Calificacion: ${this.calificacion}`;
+        }
+
         static generos () {
             let textoGeneros = "Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western".toLowerCase();
             const listaGeneros = textoGeneros.split(",");
@@ -57,32 +61,50 @@
         if(director.length <2 || director.length >= 50) return "La longitud del director debe estar comprendida entre 2 y 50 caracteres";
         if(!/\d{4}/.test(estreno) || (estreno < 1900 || estreno > 2050)) return "La fecha de estreno es incorrecta.";
         if(pais) {
-            pais[0] = pais[0].replaceAll(" ", "").split(",");
+            pais[0] = pais[0].split(",");
         }
         if(genero) {
-            genero[0] = genero[0].toLowerCase().replaceAll(" ","").split(",");
+            genero[0] = genero[0].toLowerCase().split(",");
             if(!genero[0].some(elemento => Pelicula.generos().includes(elemento))) return "El genero no es valido";
         }
         if(calificacion) {
-            (/^\D+$/.test(calificacion)) ? calificacion=parseFloat(calificacion).toFixed(1) : "La calificacion debe estar comprendida entre 0 y 10";
+            if(/^\d\.\d+$/.test(calificacion)) {
+                calificacionMod = parseFloat(calificacion).toFixed(1);
+                if(calificacionMod < 0 || calificacionMod > 10) return "La calificacion debe estar comprendida entre 0 y 10";
+            }
+            else {
+                return "La calificacion solo admite digitos entre 0 y 10";
+            }
         }
-        return [id, titulo, director, estreno, pais, genero, calificacion];
+        return [id, titulo, director, estreno, pais, genero, calificacionMod];
     }
 
-    const campos = ["id --> En formato IMBD", "titulo", "director", "anio de estreno", "pais(es) de origen", "genero(s)", "calificacion"];
+    const campos = ["id --> En formato IMBD", "titulo", "director", "anio de estreno", "pais(es) de origen", "genero(s)", "calificacion (0 - 10)"];
     alert(`INSCRIBIR PELICULA:\n***CAMPOS OBLIGATORIOS*** ${campos.map(elemento => "\n- "+elemento)}`);
     const entradas = [];
     for(let campo of campos.keys()) {
+        let entrada;
+        let texto=campos[campo].toUpperCase();
         if (campo === 4 || campo === 5) {
-            let entrada = prompt(`${campos[campo].toUpperCase()} (SEPARAR POR "," LOS DISTINTOS VALORES)`);
-            entradas.push([entrada])
+            (campo === 5)
+            ? entrada = prompt(`${texto} (SEPARAR POR "," LOS DISTINTOS VALORES)\n*Generos aceptados\n- ${Pelicula.generos()}`)
+            : entrada = prompt(`${texto} (SEPARAR POR "," LOS DISTINTOS VALORES`);
+            entradas.push([entrada]);
         }
         else {
-            let entrada = prompt(`${campos[campo].toUpperCase()}`);
+            entrada = prompt(`${texto}`);
             entradas.push(entrada);
         }
     }
-    alert(validarEntrada(entradas));
+    let resultado = validarEntrada(entradas);
+    if(resultado instanceof Array) {
+        const [id, titulo, director, estreno, pais, genero, calificacion] = resultado;
+        pelicula1 = new Pelicula(id, titulo, director, estreno, pais, genero, calificacion);
+        alert(pelicula1.GetFicha);
+    }
+    else {
+        alert(resultado);
+    }
     
     </script>
 </body>
