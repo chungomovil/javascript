@@ -30,6 +30,32 @@
 
     * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.*/
     
+    const validarEntrada = entradas => {
+        const [id, titulo, director, estreno, pais=[], genero=[], calificacion] = entradas;
+        if(entradas.some(elemento => elemento.length === 0)) return "Alguno de los campos esta vacio"; //COMPROBAMOS QUE NINGUNO DE LOS ELEMENTOS DEL ARRAY ESTE VACIO CON ESTE METODO QUE DEVUELVE TRUE O FALSE (SI UNO CUMPLE LA CONDICION YA ES TRUE)
+        if(!/^[a-zA-Z]{2}\d{7}$/.test(id)) return "El formato del id no es correcto.";
+        if(titulo.length >= 100) return "La longitud del titulo no puede ser mayor a 100 caracteres";
+        if(director.length <2 || director.length >= 50) return "La longitud del director debe estar comprendida entre 2 y 50 caracteres";
+        if(!/\d{4}/.test(estreno) || (estreno < 1900 || estreno > 2050)) return "La fecha de estreno es incorrecta.";
+        if(pais) {
+            pais[0] = pais[0].split(",");
+        }
+        if(genero) {
+            genero[0] = genero[0].toLowerCase().replaceAll(" ","").split(",");
+            if(!genero[0].every(elemento => Pelicula.generos().includes(elemento))) return "El genero no es valido"; //AL REVES QUE EL METODO "SOME", ESTE COMPRUEBA QUE TODOS LOS ELEMENTOS CUMPLAN EL PARAMETRO
+        }
+        if(calificacion) {
+            calificacionMod = parseFloat(calificacion).toFixed(1);
+            if(isNaN(calificacionMod)) {
+                return "La calificacion solo admite digitos entre 0 y 10";
+            }
+            else if(calificacionMod < 0 || calificacionMod > 10){
+                return "La calificacion debe estar comprendida entre 0 y 10";
+            }
+        }
+        return [id, titulo, director, estreno, pais, genero, calificacionMod];
+    }
+
     class Pelicula {
 
         constructor(id, titulo, director, estreno, pais, genero, calificacion) {
@@ -47,42 +73,19 @@
         }
 
         static generos () {
-            let textoGeneros = "Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western".toLowerCase();
-            const listaGeneros = textoGeneros.split(",");
+            let textoGeneros = "Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary, Drama, Family, Fantasy, Film-Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western".toLowerCase();
+            const listaGeneros = textoGeneros.replaceAll(" ","").split(",");
             return listaGeneros;
         }
-    }
-
-    const validarEntrada = entradas => {
-        const [id, titulo, director, estreno, pais=[], genero=[], calificacion] = entradas;
-        if(entradas.some(elemento => elemento.length === 0)) return "Alguno de los campos esta vacio"; //COMPROBAMOS QUE NINGUNO DE LOS ELEMENTOS DEL ARRAY ESTE VACIO CON ESTE METODO QUE DEVUELVE TRUE O FALSE
-        if(!/^[a-zA-Z]{2}\d{7}$/.test(id)) return "El formato del id no es correcto.";
-        if(titulo.length >= 100) return "La longitud del titulo no puede ser mayor a 100 caracteres";
-        if(director.length <2 || director.length >= 50) return "La longitud del director debe estar comprendida entre 2 y 50 caracteres";
-        if(!/\d{4}/.test(estreno) || (estreno < 1900 || estreno > 2050)) return "La fecha de estreno es incorrecta.";
-        if(pais) {
-            pais[0] = pais[0].split(",");
-        }
-        if(genero) {
-            genero[0] = genero[0].toLowerCase().split(",");
-            if(!genero[0].some(elemento => Pelicula.generos().includes(elemento))) return "El genero no es valido";
-        }
-        if(calificacion) {
-            if(/^\d\.\d+$/.test(calificacion)) {
-                calificacionMod = parseFloat(calificacion).toFixed(1);
-                if(calificacionMod < 0 || calificacionMod > 10) return "La calificacion debe estar comprendida entre 0 y 10";
-            }
-            else {
-                return "La calificacion solo admite digitos entre 0 y 10";
-            }
-        }
-        return [id, titulo, director, estreno, pais, genero, calificacionMod];
     }
 
     const campos = ["id --> En formato IMBD", "titulo", "director", "anio de estreno", "pais(es) de origen", "genero(s)", "calificacion (0 - 10)"];
     alert(`INSCRIBIR PELICULA:\n***CAMPOS OBLIGATORIOS*** ${campos.map(elemento => "\n- "+elemento)}`);
     const entradas = [];
-    for(let campo of campos.keys()) {
+    const listaEntradas = [["tt0180093", "Réquiem For A Dream", "Darren Aronofsky", 2000, ["Estados Unidos"], ["crime"], 8.3], ["tt0172495", "Gladiator", "Ridley Scott", 2000, ["UK, EEUU"], ["Action, Drama, Adventure"], 8.5], ["tt0068646", "El Padrino", "Francis Ford Coppola", 1972, ["EEUU"], ["Crime, Drama"], 9.2]];
+    
+    //HABILITAR ENTRADA DEL USUARIO
+    /*for(let campo of campos.keys()) {
         let entrada;
         let texto=campos[campo].toUpperCase();
         if (campo === 4 || campo === 5) {
@@ -104,6 +107,17 @@
     }
     else {
         alert(resultado);
+    }*/
+    for(let entrada of listaEntradas) {
+        let resultado = validarEntrada(entrada);
+        if(resultado instanceof Array) {
+            const [id, titulo, director, estreno, pais, genero, calificacion] = resultado;
+            pelicula1 = new Pelicula(id, titulo, director, estreno, pais, genero, calificacion);
+            alert(pelicula1.GetFicha);
+        }
+        else {
+            alert(resultado);
+        }
     }
     
     </script>
