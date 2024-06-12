@@ -53,12 +53,12 @@
                 return "La calificacion debe estar comprendida entre 0 y 10";
             }
         }
-        return [id, titulo, director, estreno, pais, genero, calificacionMod];
+        return {id, titulo, director, estreno, pais, genero, calificacionMod};
     }
 
     class Pelicula {
 
-        constructor(id, titulo, director, estreno, pais, genero, calificacion) {
+        constructor({id, titulo, director, estreno, pais, genero, calificacion}) { //SI LO ENCAPSULAMOS TODO EN UN ARRAY U OBJETO ES MAS COMODO PARA INSTANCIARLO
             this.id = id,
             this.titulo = titulo,
             this.director = director,
@@ -102,7 +102,7 @@
     let resultado = validarEntrada(entradas);
     if(resultado instanceof Array) {
         const [id, titulo, director, estreno, pais, genero, calificacion] = resultado;
-        pelicula1 = new Pelicula(id, titulo, director, estreno, pais, genero, calificacion);
+        pelicula1 = new Pelicula(resultado);
         alert(pelicula1.GetFicha);
     }
     else {
@@ -110,9 +110,9 @@
     }*/
     for(let entrada of listaEntradas) {
         let resultado = validarEntrada(entrada);
-        if(resultado instanceof Array) {
-            const [id, titulo, director, estreno, pais, genero, calificacion] = resultado;
-            pelicula1 = new Pelicula(id, titulo, director, estreno, pais, genero, calificacion);
+        if(resultado instanceof Object) {
+            const {id, titulo, director, estreno, pais, genero, calificacion} = resultado;
+            pelicula1 = new Pelicula(resultado);
             alert(pelicula1.GetFicha);
         }
         else {
