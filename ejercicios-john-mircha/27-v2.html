@@ -27,9 +27,51 @@
                 instancias de la clase de forma automatizada e imprime la ficha técnica 
                 de cada película.
 
-    * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.*/
+        * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.*/
     
-    
+        class Pelicula {
+            constuctor({id, titulo, director, estreno, pais, genero, calificacion}) {
+                this.id = id,
+                this.titulo = titulo,
+                this.director = director,
+                this.estreno = estreno,
+                this.pais = pais,
+                this.genero = genero,
+                this.calificacion = calificacion
+            }
+
+            static get GetCampos() {
+                return(`***CAMPOS NECESARIOS***\n- Id => (Id de IMDB)\n- Titulo => (maximo 100 caracteres)\n- Director => (maximo 50 caracteres)\n- Anio de estreno => (anio con 4 digitos)\n- Pais(es) de origen\n- Genero(s)\n- Calificacion => del 0 al 10`);
+            }
+            
+            static get GetGeneros() {
+                let generos = "Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western";
+                const listaGeneros = generos.trim().split(",");
+                return listaGeneros;
+            }
+        }
+
+        alert(Pelicula.GetCampos);
+        const Datos = {
+            id: "",
+            titulo: "",
+            director: "",
+            estreno: "",
+            pais: [],
+            genero: [],
+            calificacion: ""
+        };
+        
+        for(dato in Datos) {
+            let entrada = undefined;
+            if(Datos[dato] instanceof Array) {
+                (dato === "genero") ? entrada = prompt(`Introducir el campo [${dato}(s)] separado por ",":\n***Generos aceptados***\n${Pelicula.GetGeneros}`) : entrada = prompt(`Introducir el campo [${dato}(es)] separado por ",":`);
+            }
+            else {
+                let entrada = prompt(`Introducir el campo [${dato}]:`);
+            }
+        }
+        console.log(Datos);
 
     </script>
 </body>
