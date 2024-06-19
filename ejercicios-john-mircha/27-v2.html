@@ -30,14 +30,115 @@
         * Géneros Aceptados: Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western.*/
     
         class Pelicula {
-            constuctor({id, titulo, director, estreno, pais, genero, calificacion}) {
+
+            constructor({id, titulo, director, estreno, pais, genero, calificacion}) {
                 this.id = id,
                 this.titulo = titulo,
                 this.director = director,
                 this.estreno = estreno,
                 this.pais = pais,
                 this.genero = genero,
-                this.calificacion = calificacion
+                this.calificacion = calificacion;
+                this.estado=true;
+                this.validarId(this.id);
+                this.validarTitulo(this.titulo);
+                this.validarDirector(this.director);
+                this.validarEstreno(this.estreno);
+                this.validarPais(this.pais);
+                this.validarGenero(this.genero);
+                this.validarCalificacion(this.calificacion);
+            }
+
+            validarCadena(cadena, campo) {
+                if(cadena.length === 0) {
+                    this.estado = false;
+                    return alert(`El campo [${campo}] esta vacio`);
+                }
+                return true;
+            }
+
+            longitudCadena(cadena, longitud, campo) {
+                if(this.validarCadena(cadena, campo)) {
+                    if(cadena.length > longitud) {
+                        this.estado = false;
+                        return alert(`El campo [${campo}] supera los ${longitud} caracteres aceptados.`);
+                    }
+                }
+                return true;
+            }
+
+            convertirAArray(cadena, campo) {
+                if(this.validarCadena(cadena, campo)) {
+                    cadena = cadena.split(",");
+                }
+                for(let x = 0; x < cadena.length; x++){
+                    cadena[x] = cadena[x].trim();
+                }
+                return cadena;
+            }
+
+            validarId(cadena) {
+                if(this.validarCadena(cadena, "Id")) {
+                    if(!/^[a-zA-Z]{2}\d{7}/.test(cadena)){
+                        this.estado=false;
+                        return alert(`El campo [id] no contiene un formato valido.`);
+                    }
+                }
+            }
+
+            validarTitulo(cadena) {
+                this.longitudCadena(cadena, 100, "titulo");
+            }
+
+            validarDirector(cadena) {
+                this.longitudCadena(cadena, 50, "director");
+            }
+
+            validarEstreno(cadena) {
+                if(this.validarCadena(cadena, "estreno")) {
+                    if(!/^\d{4}$/.test(cadena)) {
+                        this.estado = false;
+                        return alert("La fecha de estreno solo puede contener 4 digitos.");
+                    }
+                }
+            }
+
+            validarPais(cadena) {
+                this.pais = this.convertirAArray(cadena, "pais");
+            }
+
+            validarGenero(cadena) {
+                this.genero = this.convertirAArray(cadena, "genero");
+                const listaGeneros = Pelicula.GetGeneros;
+                for(let genero of this.genero) {
+                    if(!listaGeneros.includes(genero)) {
+                        this.estado = false;
+                        return alert(`El genero ${genero} no se encuentra en la lista`);
+                    }
+                }
+            }
+
+            validarCalificacion(cadena) {
+                if(this.validarCadena(cadena, "calificacion")) {;
+                    this.calificacion = parseFloat(cadena).toFixed(1);
+                    if(isNaN(this.calificacion)) {
+                        this.estado = false;
+                        return alert("Formato de calificacion no valido.");
+                    }
+                    if(this.calificacion < 0 || this.calificacion > 10) {
+                        this.estado = false;
+                        return alert("La calificacion deben estar comprendida entre 0 y 10.");
+                    }
+                }
+            }
+
+            get GetFicha() {
+                if(this.estado) {
+                    return alert(`***FICHA DE LA PELICULA (${this.titulo})***\n- Id: ${this.id}\n- Director: ${this.director}\n- Estreno: ${this.estreno}\n- Pais(es): ${this.pais}\n- Genero(s): ${this.genero}\n- Calificacion: ${this.calificacion}`);
+                }
+                else {
+                    return alert("Hay datos erroneos en la pelicula y no se puede mostrar la ficha");
+                }
             }
 
             static get GetCampos() {
@@ -45,33 +146,70 @@
             }
             
             static get GetGeneros() {
-                let generos = "Action, Adult, Adventure, Animation, Biography, Comedy, Crime, Documentary ,Drama, Family, Fantasy, Film Noir, Game-Show, History, Horror, Musical, Music, Mystery, News, Reality-TV, Romance, Sci-Fi, Short, Sport, Talk-Show, Thriller, War, Western";
-                const listaGeneros = generos.trim().split(",");
+                let generos = "Action,Adult,Adventure,Animation,Biography,Comedy,Crime,Documentary,Drama,Family,Fantasy,Film Noir,Game-Show,History,Horror,Musical,Music,Mystery,News,Reality-TV,Romance,Sci-Fi,Short,Sport,Talk-Show,Thriller,War,Western";
+                const listaGeneros = generos.split(",");
                 return listaGeneros;
             }
         }
 
         alert(Pelicula.GetCampos);
-        const Datos = {
+        //FORMA PARA CREAR LAS PELICULAS A PARTIR DE UN ARRAY
+        const listaPeliculas = [
+            {
+                id: "tt0180093",
+                titulo: "Réquiem For A Dream",
+                director: "Darren Aronofsky",
+                estreno: 2000,
+                pais: "Estados Unidos",
+                genero: "Crime",
+                calificacion: 8.3
+            },
+            {
+                id:"tt0172495",
+                titulo:"Gladiator",
+                director:"Ridley Scott",
+                estreno:2000,
+                pais:"UK, EEUU",
+                genero: "Action, Drama, Adventure",
+                calificacion: 8.5
+            },
+            {
+                id: "tt0068646",
+                titulo: "El Padrino",
+                director: "Francis Ford Coppola",
+                estreno: 1972,
+                pais: "EEUU",
+                genero: "Crime, Drama",
+                calificacion: 9.2
+            }
+        ];
+        for(elemento of listaPeliculas) {
+            pelicula = new Pelicula(elemento);
+            pelicula.GetFicha;
+        }
+        //FORMA PARA CREAR LAS PELICULAS CON INTRODUCCION DE DATOS POR PARTE DEL USUARIO
+        /*const Datos = {
             id: "",
             titulo: "",
             director: "",
             estreno: "",
-            pais: [],
-            genero: [],
+            pais: "",
+            genero: "",
             calificacion: ""
         };
         
         for(dato in Datos) {
             let entrada = undefined;
-            if(Datos[dato] instanceof Array) {
+            if(dato === "pais" || dato === "genero") {
                 (dato === "genero") ? entrada = prompt(`Introducir el campo [${dato}(s)] separado por ",":\n***Generos aceptados***\n${Pelicula.GetGeneros}`) : entrada = prompt(`Introducir el campo [${dato}(es)] separado por ",":`);
             }
             else {
-                let entrada = prompt(`Introducir el campo [${dato}]:`);
+                entrada = prompt(`Introducir el campo [${dato}]:`);
             }
+            Datos[dato] = entrada;
         }
-        console.log(Datos);
+        pelicula = new Pelicula(Datos);
+        pelicula.GetFicha;*/
 
     </script>
 </body>
