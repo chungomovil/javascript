@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronia Callback</title>
+</head>
+<body>
+    <script>
+        const palabras = ["Paco", "Felipe", "Martinez", "Bacallado", 5, "Hernandez"];
+
+        function decirNombre (palabra, callback) {
+            let retardo=Math.floor(2000 * Math.random());
+            if(/^\d+$/.test(palabra)) {
+                callback({
+                    error: true,
+                    value: "No se ha introducido un dato correcto"
+                });
+            }
+            else {
+                setTimeout(() => {
+                    callback({
+                        error: false,
+                        value: `${palabra} ==> retardo ${retardo} ms`
+                    });
+                }, retardo);
+            }
+
+        }
+
+        //SE PUEDE APRECIAR EL CALLBACK HELL
+
+        decirNombre(palabras[0], result => {
+            (!result.error) ? console.log(result.value) : console.error(result.value);
+            decirNombre(palabras[1], result => {
+                (!result.error) ? console.log(result.value) : console.error(result.value);
+                decirNombre(palabras[2], result => {
+                    (!result.error) ? console.log(result.value) : console.error(result.value);
+                    decirNombre(palabras[3], result => {
+                        (!result.error) ? console.log(result.value) : console.error(result.value);
+                        decirNombre(palabras[4], result => {
+                            (!result.error) ? console.log(result.value) : console.error(result.value);
+                            decirNombre(palabras[5], result => {
+                                (!result.error) ? console.log(result.value) : console.error(result.value);
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asincronia con Promise</title>
+</head>
+<body>
+    <script>
+        const listadoPalabras = ["Paco", "Eustaquio", "Ramazzotti", 7, "Ramallo"];
+
+        function decirPalabra(palabra) {
+            let retardo = Math.floor(2000 * Math.random());
+            if(/^\d+$/.test(palabra)) return Promise.reject(`Error: No se admiten valores numericos`);
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        palabra,
+                        retardo
+                    });
+                }, retardo);
+            });
+        }
+
+        decirPalabra(listadoPalabras[0])
+            .then(obj => {
+                console.log(`Palabra: ${obj.palabra} => Retardo: ${obj.retardo}`);
+                return decirPalabra(listadoPalabras[1]);
+            })
+            .then(obj => {
+                console.log(`Palabra: ${obj.palabra} => Retardo: ${obj.retardo}`);
+                return decirPalabra(listadoPalabras[2]);
+            })
+            .then(obj => {
+                console.log(`Palabra: ${obj.palabra} => Retardo: ${obj.retardo}`);
+                return decirPalabra(listadoPalabras[3]);
+            })
+            .then(obj => {
+                console.log(`Palabra: ${obj.palabra} => Retardo: ${obj.retardo}`);
+                return decirPalabra(listadoPalabras[4]);
+            })
+            .then(obj => {
+                console.log(`Palabra: ${obj.palabra} => Retardo: ${obj.retardo}`);
+            })
+            .catch(err => console.error(err));
+    </script>
+</body>
+</html>
