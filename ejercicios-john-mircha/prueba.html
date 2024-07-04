@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pruebas</title>
+</head>
+<body>
+    <script>
+        /*const ws = new WeakSet();
+        let valor1 = {"valor 1": 1};
+        let valor2 = {"valor 2": "hola"};
+        let valor3 = {"valor 3": "prueba"};
+        ws.add(valor1);
+        ws.add(valor2);
+        ws.add(valor3);
+        setInterval(() => {
+            console.log(ws);
+        }, 1000);
+        setTimeout(() => {
+            valor1 = null;
+            valor2 = null;
+            valor3 = null;
+        }, 3000);*/
+        
+        /*const set = new Set();
+        let valor1 = {"valor1": 1};
+        let valor2 = {"valor 2": "hola"};
+        let valor3 = {"valor 3": "prueba"};
+        set.add(valor1);
+        set.add(valor2);
+        set.add(valor3);
+        setInterval(() => {
+            console.log(set);
+        }, 1000);
+        setTimeout(() => {
+            valor1 = null;
+            valor2 = null;
+            valor3 = null;
+        }, 3000);*/
+
+        function cuadrado(valor) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        valor,
+                        resultado: valor*valor
+                    });
+                }, Math.random() * 2000);
+            });
+        }
+
+        function* generador() {
+            console.log("Inicia el generador");
+            yield cuadrado(1);
+            yield cuadrado(2);
+            console.log("Termina el generador");
+        }
+
+        let gen = generador();
+
+        for(let y of gen) {
+            y.then(obj => console.log(obj));
+        }
+
+    </script>
+</body>
+</html>
