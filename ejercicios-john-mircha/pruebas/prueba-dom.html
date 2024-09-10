@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .rotate-45 {
+        transform: rotate(45deg);
+    }
+    .rotate-180 {
+        transform: rotate(180deg);
+    }
+    .opacity-50 {
+        opacity: 50%;
+    }
+    .fontsize-big {
+        font-size: 2.5rem;
+    }
+    .elemento {
+        text-decoration: none;
+        list-style: none;
+    }
+    .elemento figcaption {
+        color: white;
+        background-color: gray;
+        font-size: 1.5rem;
+    }
+    #agregar-click, #eliminar-dblclick, #evento-parametros {
+        background-color: blueviolet;
+        padding: 10px;
+        font-size: 2rem;
+        color: white;
+        margin: 10px;
+    }
+    .eventos-flujo div {
+        padding: 4rem;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .uno {
+        background-color: yellow;
+    }
+    .dos {
+        background-color: gold;
+    }
+    .tres {
+        background-color: lightyellow;
+    }
+</style>
+<body>
+    <h2 class="encabezado">Esto es un documento de prueba del DOM</h2>
+    <ul id="lista">
+        <li class="elemento">
+            <figure>
+                <img src="https://via.assets.so/album.jpg?w=200&h=200" alt="album">
+                <figcaption>Album</figcaption>
+            </figure>
+        </li>
+        <li class="elemento">
+            <figure>
+                <img src="https://via.assets.so/game.jpg?w=200&h=200" alt="juego">
+                <figcaption>Juego</figcaption>
+            </figure>
+        </li>
+        <li class="elemento">
+            <figure>
+                <img src="https://via.assets.so/movie.jpg?w=200&h=200" alt="pelicula">
+                <figcaption>Pel&iacute;cula</figcaption>
+            </figure>
+        </li>
+        <li class="elemento">
+            <figure>
+                <img src="https://via.assets.so/shoe.jpg?w=200&h=200" alt="zapato">
+                <figcaption>Zapato</figcaption>
+            </figure>
+        </li>
+        <li class="elemento">
+            <figure>
+                <img src="https://via.assets.so/furniture.jpg?w=200&h=200" alt="mueble">
+                <figcaption>Mueble</figcaption>
+            </figure>
+        </li>
+        <template id="template">
+            <li class="elemento">
+                <figure>
+                    <img>
+                <figcaption></figcaption>
+                </figure>
+            </li>
+        </template>
+    </ul>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. In temporibus explicabo eaque veniam praesentium quasi repellat nisi ab repellendus possimus ratione, est illum earum at optio, ducimus quaerat? Iste, ea!</p>
+    <input type="text" data-attribute="campo-de-escritura" id="campo1"/>
+    <a href="#" id="enlace">CLICK</a>
+    <div id="agregar-click">Dar click (se muestra por consola)</div>
+    <div id="eliminar-dblclick">Dar doble-click (se muestra por consola)</div>
+    <div id="evento-parametros">Dar click (evento con par&aacute;metros)</div>
+    <div class="eventos-flujo">
+        <div class="uno">
+            1
+            <div class="dos">
+                2
+                <div class="tres">
+                    3
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./dom.js"></script>
+    <script>
+        //CAPTURAR Y MODIFICAR PROPIEDADES DE ELEMENTOS DEL DOM
+        //console.log(getComputedStyle(document.body));
+        const $campoEscritura = document.getElementById("campo1");
+        //console.log($campoEscritura);
+        //console.log($campoEscritura.dataset.attribute);
+        $campoEscritura.setAttribute("data-id", "4");
+        //console.log($campoEscritura.dataset);
+        document.documentElement.lang = "en";
+        const $enlace = document.getElementById("enlace");
+        //DIFERENTES FORMAS DE AGREGAR ESTILOS A ELEMENTOS DEL DOM
+        document.getElementById("lista").style.backgroundColor = "green";
+        document.querySelectorAll(".elemento").forEach(el => el.style.textDecoration = "underline");
+        document.querySelector(".encabezado").setAttribute("style", "font-size: 2.5rem");
+        $enlace.style.setProperty("color", "red");
+        $enlace.style.setProperty("text-decoration", "none");
+        $enlace.style.display = "block";
+        $enlace.style.backgroundColor = "black";
+        //console.log($enlace.style); //MUESTRA SOLO LOS ESTILOS QUE HAYAMOS AGREGADO NOSOTROS MANUALMENTE
+        //console.log(getComputedStyle($enlace)); //MUESTRA LA INFORMACION DE TODOS LOS VALORES DEL ELEMENTO, INCLUSO LOS QUE VIENEN POR DEFECTO (ESTOS SE SUELEN MOSTRAR AL FINAL DE LA LISTA)
+    </script>
+</body>
+</html>

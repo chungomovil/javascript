@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso Asincronia</title>
+</head>
+<body>
+    <script>
+        /*Hacer una carrera entre dos coches:
+        - La carrera tiene una duracion de 4 vueltas, que al pasar se calcula cuanto ha tardado cada coche.
+        - Mostrar un mensaje del que llegue antes a meta gana la carrera.*/
+
+        function calcularTiempo(coche, vuelta) {
+            let tiempo = ((Math.random()*20000)+10000).toFixed(2);
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve({
+                        coche,
+                        vuelta,
+                        tiempo
+                    });
+                }, tiempo);
+            }); 
+        }
+
+        async function comenzarCarrera() {
+            let vueltas=4;
+            
+            while(vueltas>=0) {
+                let tiempo1 = await calcularTiempo(Coche1.modelo, vueltas);
+                let tiempo2 = await calcularTiempo(Coche2.modelo, vueltas);
+                console.log(`Vuelta: ${vueltas}`);
+                console.log(`Coche: ${tiempo1.coche} --> Tiempo: ${tiempo1.tiempo}`);
+                console.log(`Coche: ${tiempo2.coche} --> Tiempo: ${tiempo2.tiempo}`);
+                Coche1.tiempos.push(tiempo1.tiempo);
+                Coche2.tiempos.push(tiempo2.tiempo);
+                vueltas--;
+            }
+        }
+
+        async function calcularResultados() {
+            await comenzarCarrera();
+            let total1 = Coche1.tiempos.reduce((total, valor) => total + parseFloat(valor), 0).toFixed(2);
+            let total2 = Coche2.tiempos.reduce((total, valor) => total + parseFloat(valor), 0).toFixed(2);
+            console.log(`TIEMPOS TOTALES:\nCoche: ${Coche1.modelo} --> ${total1} segundos.\nCoche: ${Coche2.modelo} --> ${total2} segundos.`);
+            (total1 < total2) ? console.log(`¡Gana el ${Coche1.modelo}!`) : console.log(`¡Gana el ${Coche2.modelo}!`);
+        }
+
+        const Coche1 = {
+                modelo: "Lamborghini Aventador SVJ",
+                tiempos: []
+        };
+        const Coche2 = {
+            modelo: "Ferrari Portofino",
+            tiempos: []
+        };
+
+        calcularResultados();
+
+
+    </script>
+</body>
+</html>
