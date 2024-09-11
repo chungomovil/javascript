@@ -1,0 +1,77 @@
+:root {
+    --orange-js: #f4d03f;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: var(--orange-js);
+    text-align: center;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+section {
+    text-align: center;
+}
+
+#navegacion {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    text-align: center;
+    font-size: 2rem;
+    color: var(--orange-js);
+}
+
+#nav-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.nav-item a {
+    display: block;
+    padding: 50px 0;
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item a:hover {
+    color: black;
+    font-weight: bold;
+    background-color: var(--orange-js);
+}
+
+
+#nav-button {
+    position: fixed;
+    right: 2%;
+    bottom: 2%;
+}
+
+#nav-button button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--orange-js);
+}
+
+.hiden {
+    left: -5000px;
+    transition: 1s ease-in-out;
+}
+
+.normal {
+    left: 0;
+    transition: .5s ease;
+}
