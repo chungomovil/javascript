@@ -29,6 +29,7 @@ export default function hamburguerMenu (panelBtn, nav, navLink) {
 
         if(e.target.matches(navLink)) {
             $nav.classList.replace("normal", "hiden");
+            $panelBtn.classList.toggle("is-active");
         }
     })
 
