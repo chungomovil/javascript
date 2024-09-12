@@ -3,22 +3,35 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /*Scroll suave*/
+    box-sizing: border-box; /*comportamiento de las cajas, con border-box no se desbordan en caso de tener padding, al contrario, omite el exceso de padding o margin para que no desborde al elemento padre*/
+}
+
+/*Parametros de reseteo*/
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 body {
     margin: 0;
+    overflow-x: hidden; /*Por si los elementos se salen de la pantalla no salga la barra de desplazamiento lateral*/
 }
 
 header {
+    position: sticky;
+    top: 0;
     background-color: var(--orange-js);
     text-align: center;
-    padding: 10px;
+    padding: 5px;
     margin: 0 auto;
 }
 
 section {
     text-align: center;
+    padding-top: 5rem;
+    height: 100vh;
 }
 
 #navegacion {
@@ -32,6 +45,7 @@ section {
     text-align: center;
     font-size: 2rem;
     color: var(--orange-js);
+    z-index: 998;
 }
 
 #nav-list {
@@ -50,6 +64,7 @@ section {
     color: black;
     font-weight: bold;
     background-color: var(--orange-js);
+    transition: all .5s ease;
 }
 
 
@@ -57,6 +72,7 @@ section {
     position: fixed;
     right: 2%;
     bottom: 2%;
+    z-index: 999;
 }
 
 #nav-button button {
@@ -67,11 +83,13 @@ section {
 }
 
 .hiden {
-    left: -5000px;
-    transition: 1s ease-in-out;
+    transform: translate(-100%, 0); /*Manera optima de sacar elementos de la pantalla, el primer valor es "X" y el segundo "Y"*/
+    opacity: 0;
+    transition: .5s ease-in-out;
 }
 
 .normal {
-    left: 0;
+    transform: translate(0);
+    opacity: 100%;
     transition: .5s ease;
 }
