@@ -93,3 +93,9 @@ section {
     opacity: 100%;
     transition: .5s ease;
 }
+
+.timer {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
