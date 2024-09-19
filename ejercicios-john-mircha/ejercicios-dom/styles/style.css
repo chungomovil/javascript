@@ -15,7 +15,7 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
     overflow-x: hidden; /*Por si los elementos se salen de la pantalla no salga la barra de desplazamiento lateral*/
 }
 
@@ -29,6 +29,10 @@ header {
     z-index: 997;
 }
 
+main {
+    margin: 0 auto;
+    max-width: 1200px;
+}
 section {
     display: flex;
     flex-direction: column;
