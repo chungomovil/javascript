@@ -60,3 +60,22 @@ function moveBall(limit, pos, borderball, direction) {
         }
     }
 }
+
+export function shortcut() {
+    d.addEventListener("keydown", (e) => {
+        if(e.altKey) { //De esta forma sabemos si la tecla "ALT" estaba presionada cuando se pulsaron las demas
+            switch(e.code) {
+                case "KeyA":
+                    alert("Este es un atajo para mostrar una alerta.");
+                    break;
+                case "KeyP":
+                    prompt("Este es un atajo para mostrar un prompt.");
+                    break;
+                case "KeyC":
+                    confirm("Este es un atajo para crear una confirmacion.");
+                    break;
+            }
+        }
+    });
+}
+
