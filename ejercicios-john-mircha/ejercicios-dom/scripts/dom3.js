@@ -1,7 +1,10 @@
 const d = document;
 
 export function controlsBall(ballArea, ball) {
-    let activateBall = false;
+    let activateBall = false,
+    /*ESTAS DOS VARIABLES SE USAN PARA EL METODO GETBOUNDINGCLIENTRECT */
+    x = 0,
+    y = 0;
     const $ballArea = d.querySelector(ballArea);
     const $ball = d.getElementById(ball);
 
@@ -40,6 +43,30 @@ export function controlsBall(ballArea, ball) {
             }
         }
     });
+
+    /*CON EL METODO "GETBOUNDINGCLIENTRECT" QUE CALCULA A CUANTO ESTÁN LOS ELEMENTOS DE DISTANCIA DE LOS BORDES DEL VIEWPORT*/
+    /*d.addEventListener("keydown", (e) => {
+        if(activateBall) {
+            let ballPos = $ball.getBoundingClientRect(),
+            areaPos= $ballArea.getBoundingClientRect();
+            switch(e.code) {
+                case "KeyW":
+                    if(ballPos.top > areaPos.top) y -= 10;
+                    break;
+                case "KeyS":
+                    if(ballPos.bottom < areaPos.bottom) y += 10;
+                    break;
+                case "KeyA":
+                    if(ballPos.left > areaPos.left) x -= 10;
+                    break;
+                case "KeyD":
+                    if(ballPos.right < areaPos.right) x += 10;
+                    break;
+            }
+            $ball.style.transform = `translate(${x}px, ${y}px)`;
+        }
+    });*/
+    
 }
 
 function moveBall(limit, pos, borderball, direction) {
