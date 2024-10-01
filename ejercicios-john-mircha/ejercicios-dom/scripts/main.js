@@ -8,5 +8,5 @@ window.addEventListener("DOMContentLoaded", e => {
     relojYAlarma(".timer", ".clock-btn", ".clock-btn-disable", ".alarm-btn", ".alarm-btn-disable");
     controlsBall(".ball-area","ball");
     shortcut();
-    cuentaRegresiva("seccion3");
+    cuentaRegresiva("seccion3", "2026-10-01T13:25:30", "¡FELICIDADES, HAS GANADO UN PREMIO!");
 });
