@@ -1,28 +1,29 @@
-const d = document;
+const d = document,
+w = window;
 
 export default function scrollToTop(element) {
     let movePage = (posY, element) => {
         if(posY <= 200) {
-            element.style.display = "none";
+            element.classList.replace("normal", "hiden");
         }
         else {
-            element.style.display = "block";
+            element.classList.replace("hiden", "normal");
         }
     }
 
     const $element = d.querySelector(element);
-    let posY = window.scrollY;
+    let posY = w.scrollY;
     movePage(posY, $element);
 
     d.addEventListener("click", (e) => {
         if(e.target.matches(element) || e.target.matches(`${element} *`)) {
-            window.scrollTo(0,0);
-            posY = window.scrollY;
+            w.scrollTo(0,0);
+            posY = w.scrollY;
         }
     })
-
-    d.addEventListener("scroll", (e) => {
-        posY = window.scrollY;
+    /*Se puede hacer desde el elemento "windows" o desde el elemento "document"*/
+    w.addEventListener("scroll", (e) => {
+        posY = w.scrollY;
         movePage(posY, $element);
     });
 }
