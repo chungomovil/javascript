@@ -1,6 +1,8 @@
 :root {
     --orange-js: rgba(244, 208, 63, 1);
     --orange-js-hover: rgba(244, 208, 63, .7);
+    --light: #f7f9f9;
+    --dark: #212f3d;
 }
 
 html {
@@ -34,6 +36,7 @@ main {
     margin: 0 auto;
     max-width: 1200px;
 }
+
 section {
     display: flex;
     flex-direction: column;
@@ -41,6 +44,10 @@ section {
     text-align: center;
     padding-top: 5rem;
     height: 100vh;
+}
+
+h1 {
+    color: var(--dark);
 }
 
 #navegacion {
@@ -84,7 +91,15 @@ section {
     z-index: 999;
 }
 
-#nav-button button {
+#nav-button-left {
+    position: fixed;
+    display: flex;
+    left: 2%;
+    bottom: 2%;
+    z-index: 999;
+}
+
+#nav-button button, #nav-button-left button {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -93,13 +108,13 @@ section {
     border-color: transparent;
 }
 
-.toTop:hover {
+.toTop:hover, .theme-mode:hover {
     cursor: pointer;
     background-color: var(--orange-js-hover) !important;
     transition: .15s linear;
 }
 
-.toTop span{
+.toTop span {
     font-size: 2rem;
 }
 
@@ -139,4 +154,14 @@ section {
     left: 50%;
     margin-top: -2rem;
     margin-left: -2rem;
+}
+
+.dark {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.light {
+    background-color: var(--light);
+    color: var(--dark);
 }

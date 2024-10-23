@@ -3,6 +3,7 @@ import relojYAlarma from "./dom2.js";
 import {controlsBall, shortcut} from "./dom3.js";
 import cuentaRegresiva from "./dom4.js";
 import scrollToTop from "./dom5.js";
+import themeMode from "./dom6.js";
 
 
 window.addEventListener("DOMContentLoaded", e => {
@@ -12,4 +13,5 @@ window.addEventListener("DOMContentLoaded", e => {
     shortcut();
     cuentaRegresiva("seccion3", "2026-10-01T13:25:30", "¡FELICIDADES, HAS GANADO UN PREMIO!");
     scrollToTop(".toTop");
+    themeMode(".theme-mode");
 });
