@@ -158,10 +158,5 @@ h1 {
 
 .dark {
     background-color: var(--dark);
-    color: var(--light);
-}
-
-.light {
-    background-color: var(--light);
-    color: var(--dark);
+    color: var(--orange-js);
 }

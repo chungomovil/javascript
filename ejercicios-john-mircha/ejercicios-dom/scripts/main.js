@@ -13,5 +13,5 @@ window.addEventListener("DOMContentLoaded", e => {
     shortcut();
     cuentaRegresiva("seccion3", "2026-10-01T13:25:30", "¡FELICIDADES, HAS GANADO UN PREMIO!");
     scrollToTop(".toTop");
-    themeMode(".theme-mode");
+    themeMode(".theme-mode", "dark");
 });
