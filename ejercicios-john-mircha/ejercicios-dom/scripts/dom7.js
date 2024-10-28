@@ -1,22 +1,22 @@
 const d = document,
-w = window;
+w = window,
+mobileScreen = w.matchMedia("(max-width: 800px)");
 
 export default function loadSites(label, [...args]) {
     const $label = d.querySelector(label);
-    changeView($label, w.outerWidth, args);
-    w.addEventListener("resize", (e) => {
-        changeView(label, w.outerWidth, args);
+    changeView($label, args);
+    mobileScreen.addEventListener("change", (e) => {
+        changeView($label, args);
     });
 }
-/*LA URL DE GOOGLE ES DIFERENTE CUANDO SE USA IFRAME A CUANDO SE USA URL,
-USAR LOS METODOS MEDIA (VER VIDEO DE JHON)*/
-function changeView(label, width, [...args]) {
+
+function changeView(label, [...args]) {
     const $fragment = d.createDocumentFragment();
-    if(width<=800) {
+    if(mobileScreen.matches) {
         for(let item of args) {
-            console.log(item);
             const $url = document.createElement("a");
-            $url.setAttribute("href", item.url);
+            //Para la url de google, que es diferente en iframe a en href
+            (!item.alt) ? $url.setAttribute("href", item.url) : $url.setAttribute("href", item.alt);
             $url.setAttribute("title", item.title);
             $url.setAttribute("data-dark","");
             $url.setAttribute("target", "_blank");
@@ -35,6 +35,5 @@ function changeView(label, width, [...args]) {
             $fragment.appendChild($iframe);
         }
     }
-    label.appendChild($fragment);
-    
+    label.replaceChildren($fragment);
 }
