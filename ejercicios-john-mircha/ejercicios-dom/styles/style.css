@@ -50,6 +50,12 @@ h1 {
     color: var(--dark);
 }
 
+a {
+    display: block;
+    font-size: 1.5rem;
+}
+
+/*NAV*/
 #navegacion {
     position: fixed;
     display: flex;
@@ -82,7 +88,9 @@ h1 {
     background-color: var(--orange-js);
     transition: all .5s ease;
 }
+/*----------END NAV-------------------*/
 
+/*NAV BUTTONS*/
 #nav-button {
     position: fixed;
     display: flex;
@@ -117,7 +125,9 @@ h1 {
 .toTop span {
     font-size: 2rem;
 }
+/*--------------END NAV BUTTONS------------------------*/
 
+/*EVENTS*/
 .hiden {
     transform: translate(-100%, 0); /*Manera optima de sacar elementos de la pantalla, el primer valor es "X" y el segundo "Y"*/
     opacity: 0;
@@ -131,12 +141,13 @@ h1 {
     transition: .5s ease;
 }
 
-.timer {
-    color: red;
-    font-weight: bold;
-    font-size: 1.5rem;
+.dark {
+    background-color: var(--dark);
+    color: var(--orange-js);
 }
+/*--------------END EVENTS------------------*/
 
+/*SECTION 2*/
 .ball-area {
     position: relative;
     background-color: black;
@@ -155,8 +166,22 @@ h1 {
     margin-top: -2rem;
     margin-left: -2rem;
 }
+/*-----------------END SECTION 3---------------------*/
 
-.dark {
-    background-color: var(--dark);
-    color: var(--orange-js);
+/*SECTION 3*/
+.timer {
+    color: red;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
+/*------------END SECTION 3----------------*/
+
+/*SECTION 4*/
+.sites iframe {
+    margin: 15px auto;
+}
+.sites a {
+    margin: 15px auto;
+}
+/*---------------------END SECTION 4---------------------*/
+

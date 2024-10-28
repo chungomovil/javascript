@@ -11,7 +11,7 @@ export default function themeMode (button, darkClass) {
             mode = localStorage.getItem("mode");
             changeTheme($button, darkClass);
         }
-    })
+    });
 }
 
 function changeTheme (button, darkClass) {
