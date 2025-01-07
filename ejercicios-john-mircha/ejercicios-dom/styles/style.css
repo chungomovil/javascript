@@ -185,3 +185,15 @@ a {
 }
 /*---------------------END SECTION 4---------------------*/
 
+/*SECTION 5*/
+.tester_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: right;
+}
+.tester_box div {
+    margin: 5px 0;
+}
+
+/*-------------------END SECTION 5-----------------------*/
